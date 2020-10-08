@@ -41,16 +41,14 @@
          <v-card
             v-for="(all, ind) in content"
             :key="all.uniqueIdMatch"
-            v-show="all.show"
             width="50px"
             height="50px"
             style='font-size:20px; cursor:default; font-family: "Nunito", sans-serif;'
             @mouseenter="animateAdd($event)"
             @click="$store.commit('change_render_index', ind)"
-            :class="all.content.toLowerCase()"
+            :class="[all.content.toLowerCase(), {'d-flex': all.show, 'd-none': !all.show}]"
             class="
                ma-2
-               d-flex
                justify-center
                align-center
                font-weight-bold
@@ -83,13 +81,11 @@ export default {
             e.target.classList.remove("animate__jello");
          });
       },
-      toggleShow(e, ind){
-         this.content_vuetify[ind].show = !this.content_vuetify[ind].show;
+      toggleShow(e, indd){
          this.content.forEach( item => {
-            if (item.content === this.content_vuetify[ind].content){
-               this.content.findIndex( indexes => {
-                  console.log(indexes);
-               });
+            if (item.name.toLowerCase() === content_vuetify[indd].name.toLowerCase()){
+               console.log(item);
+               item.show = !item.show;
             }
          });
       }
