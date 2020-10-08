@@ -2,6 +2,7 @@
    <v-btn
       v-scroll="onScroll"
       v-show="fab"
+      elevation='5'
       fab
       fixed
       small
@@ -25,7 +26,7 @@ export default {
       onScroll(e){
          if (typeof window === 'undefined') return
          const top = window.pageYOffset || e.target.scrollTop || 0;
-         this.fab = top > 20;
+         this.fab = top > 500;
       }
    }
 };

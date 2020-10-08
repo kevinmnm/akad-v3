@@ -4,6 +4,12 @@
       <Block v-if="view_type === 'block'" />
       <List v-else-if="view_type === 'list'" />
       <Calendar v-else-if="view_type === 'calendar'" />
+
+      <br />
+      <v-divider></v-divider>
+      <br />
+
+      <Learned />
       
       <ThemeButton />
       <ScrollButton />
@@ -17,6 +23,7 @@ import List from '@/components/list.vue';
 import Calendar from '@/components/calendar.vue';
 import ThemeButton from '@/components/theme-button.vue';
 import ScrollButton from '@/components/scroll-button.vue';
+import Learned from '@/components/learned.vue';
 
 export default {
    name: "Main",
@@ -25,7 +32,8 @@ export default {
       List,
       Calendar,
       ThemeButton,
-      ScrollButton
+      ScrollButton,
+      Learned
    },
    data(){
       return {

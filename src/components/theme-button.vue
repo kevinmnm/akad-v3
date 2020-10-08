@@ -1,5 +1,5 @@
 <template>
-   <v-btn left bottom fixed small>
+   <v-btn left bottom fixed small elevation='5'>
       <v-icon dense>mdi-brightness-6</v-icon>
    </v-btn>
 </template>
