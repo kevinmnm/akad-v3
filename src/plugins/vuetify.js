@@ -18,7 +18,7 @@ export default new Vuetify({
             mongo: '#FFD180',
             mysql: '#E0E0E0',
             firebase: '#EF9A9A',
-            other: 'white'
+            other: '#FFFFFF'
          },
          dark: {
             block_bg: '#000000',
@@ -31,7 +31,7 @@ export default new Vuetify({
             mongo: '#E65100',
             mysql: '#424242',
             firebase: '#D50000',
-            other: 'black'
+            other: '	#000000'
          }
       }
    }

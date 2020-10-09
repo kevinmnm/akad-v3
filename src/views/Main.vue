@@ -1,5 +1,5 @@
 <template>
-   <v-container>
+   <v-container fluid class='ma-0 pa-0'>
 
       <Block v-if="view_type === 'block'" />
       <List v-else-if="view_type === 'list'" />
