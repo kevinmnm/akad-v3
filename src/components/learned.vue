@@ -1,17 +1,18 @@
 <template>
    <v-container
-      class="mb-12"
-      v-if="renderIndex"
+      class="mb-12 pb-0"
+      v-if="renderIndex || renderIndex === 0"
       :style="{ border: learnBorder }"
    >
       <v-tooltip bottom>
          <template v-slot:activator="{ on, attrs }">
-            <v-avatar 
-            class="float-left"
-            style="cursor:default"
-            v-bind="attrs"
-            v-on="on"
-            tile>
+            <v-avatar
+               class="float-right ma-0 pa-0"
+               style="cursor:default; z-index:10;"
+               v-bind="attrs"
+               v-on="on"
+               tile
+            >
                <v-icon
                   :class="content[renderIndex].content.toLowerCase()"
                   x-large
@@ -19,11 +20,19 @@
                </v-icon>
             </v-avatar>
          </template>
-         <span class='font-weight-bold' style='font-size:18px;'>{{ content[renderIndex].name }}</span>
+         <span class="font-weight-bold" style="font-size:18px;">{{
+            content[renderIndex].name
+         }}</span>
       </v-tooltip>
 
       <v-row class="text-center">
-         <v-col cols="12">{{ content[renderIndex].date }}</v-col>
+         <v-col
+            cols="12"
+            class="mt-0 pt-0 font-weight-light"
+            style="font-family:monospace;"
+         >
+            {{ content[renderIndex].date }}
+         </v-col>
 
          <v-col cols="12">
             <h1>{{ content[renderIndex].topic }}</h1>
@@ -34,10 +43,8 @@
                border="left"
                colored-border
                :color="content[renderIndex].content.toLowerCase()"
-               elevation="2"
-               outlined
-               class="text-left font-weight-bold"
-               style="font-size:20px;"
+               class="text-left"
+               style="font-size:18px;"
             >
                {{ content[renderIndex].description }}
             </v-alert>
@@ -58,17 +65,18 @@
       </v-row>
 
       <v-row>
-         <v-col cols="1" class='ma-0 pa-0 hidden-sm-and-down'>
+         <v-col cols="1" class="ma-0 pa-0 hidden-sm-and-down">
             <v-btn
                class="d-flex justify-center align-center ma-0 pa-0"
+               :class="content[renderIndex].content.toLowerCase()"
                height="100%"
                width="100%"
                @click="prev_content()"
             >
-               <v-icon x-large class='ma-0 pa-0'>mdi-arrow-left-thick</v-icon>
+               <v-icon x-large class="ma-0 pa-0">mdi-arrow-left-thick</v-icon>
             </v-btn>
          </v-col>
-         <v-col cols="12" class='ma-0 pa-0 col-md-10'>
+         <v-col cols="12" class="ma-0 pa-0 col-md-10">
             <v-card
                height="100%"
                width="100%"
@@ -77,14 +85,15 @@
             >
             </v-card>
          </v-col>
-         <v-col cols="1" class='ma-0 pa-0 hidden-sm-and-down'>
+         <v-col cols="1" class="ma-0 pa-0 hidden-sm-and-down">
             <v-btn
                class="d-flex justify-center align-center"
+               :class="content[renderIndex].content.toLowerCase()"
                height="100%"
                width="100%"
                @click="next_content()"
             >
-               <v-icon x-large class='ma-0 pa-0'>mdi-arrow-right-thick</v-icon>
+               <v-icon x-large class="ma-0 pa-0">mdi-arrow-right-thick</v-icon>
             </v-btn>
          </v-col>
       </v-row>
@@ -99,7 +108,7 @@ export default {
    data() {
       return {
          content: contents,
-         learnBorder: `2px solid black`
+         learnBorder: `2px solid lightGrey`
       };
    },
    computed: {

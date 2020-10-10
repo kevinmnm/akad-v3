@@ -89,7 +89,7 @@
          <v-container absolute width="100%" height="100%" class="ma-0">
             <v-row>
                <v-col style="font-size: 20px;">{{
-                  snacker_index ? content[snacker_index].topic : null
+                  snacker_index || snacker_index === 0 ? content[snacker_index].topic : null
                }}</v-col>
             </v-row>
          </v-container>
