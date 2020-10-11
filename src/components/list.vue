@@ -1,6 +1,5 @@
 <template>
    <v-container class='pa-0'>
-      <v-card class="text-center font-weight-bold">
          <v-container>
             <v-row class='pa-0'>
                <v-col class='pa-0 ma-0'>
@@ -20,11 +19,10 @@
                </v-col>
             </v-row>
          </v-container>
-      </v-card>
 
-      <v-row class='red'>
-         <v-col cols='6'></v-col>
-         <v-col cols='6' class='text-right'>
+      <v-row>
+         <v-col cols='6' class='gree'><h2>List</h2></v-col>
+         <v-col cols='6' class='text-right gree'>
             <v-menu offset-y transition="slide-y-transition">
                <template v-slot:activator="{ on, attrs }">
                   <v-btn v-bind="attrs" v-on="on" text dense>
@@ -140,7 +138,7 @@ export default {
                }
             })
          } else {
-            this.content.forEach(item => item.show = true )
+            this.content.forEach(item => item.show = true);
          }
       }
    }
