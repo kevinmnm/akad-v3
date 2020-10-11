@@ -1,5 +1,6 @@
 <template>
    <v-container
+      id="learned"
       class="mb-12 pb-0"
       v-if="renderIndex || renderIndex === 0"
       :style="{ border: learnBorder }"

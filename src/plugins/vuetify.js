@@ -18,7 +18,8 @@ export default new Vuetify({
             mongo: '#FFD180',
             mysql: '#E0E0E0',
             firebase: '#EF9A9A',
-            other: '#FFFFFF'
+            other: '#FFFFFF',
+            gre: '#303030'
          },
          dark: {
             block_bg: '#000000',
@@ -31,7 +32,8 @@ export default new Vuetify({
             mongo: '#E65100',
             mysql: '#424242',
             firebase: '#D50000',
-            other: '	#000000'
+            other: '#000000',
+            gre: '#D3D3D3'
          }
       }
    }
