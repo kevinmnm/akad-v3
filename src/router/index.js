@@ -10,26 +10,18 @@ const routes = [
       name: "Main",
       component: Main
    },
-
-   //   {
-   //     path: "/about",
-   //     name: "About",
-   //     component: () =>
-   //       import(/* webpackChunkName: "about" */ "../views/About.vue")
-   //   }
+   {
+      path: "/admin",
+      name: "Admin",
+      component: () =>
+         import(/* webpackChunkName: "admin" */ "../views/Admin.vue")
+   }
 ];
 
 const router = new VueRouter({
    mode: "history",
    base: process.env.BASE_URL,
-   routes,
-   scrollBehavior(to){
-      if (to.hash){
-         return {
-            selector: to.hash
-         }
-      }
-   }
+   routes
 });
 
 export default router;

@@ -1,9 +1,8 @@
 <template>
    <v-container>
-      <h2 class='hidden-sm-and-down'>BLOCK</h2>
-      <v-divider class='mb-4'></v-divider>
+   <v-card raised rounded>
       <v-row class="text-center block_bg rounded-md">
-         <v-col cols="9" class="col-sm-11 pa-0 ma-0">
+         <v-col cols="9" class="col-sm-11 pa-0 ma-0 text-left pl-5">
             <h2>Sort By</h2>
          </v-col>
          <v-divider class='mb-2'></v-divider>
@@ -122,6 +121,7 @@
             {{ ind + 1 }}
          </v-card>
       </v-row>
+   </v-card>
    </v-container>
 </template>
 

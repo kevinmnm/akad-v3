@@ -25,10 +25,10 @@ export default new Vuetify({
          },
          dark: {
             block_bg: '#000000',
-            css: '#4A148C',
+            css: '#6A1B9A',
             js: '#FFAB00',
             vue: '#1B5E20',
-            react: '#01579B',
+            react: '#0277BD',
             node: '#3E2723',
             express: '#BF360C',
             mongo: '#E65100',

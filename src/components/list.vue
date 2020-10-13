@@ -21,7 +21,7 @@
          </v-container>
 
       <v-row>
-         <v-col cols='6' class='gree'><h2>List</h2></v-col>
+         <v-col cols='6' class='gree text-left pl-5'><h2>List</h2></v-col>
          <v-col cols='6' class='text-right gree'>
             <v-menu offset-y transition="slide-y-transition">
                <template v-slot:activator="{ on, attrs }">
@@ -112,14 +112,9 @@ export default {
       show_learned(ind) {
          this.$store.commit("change_render_index", ind);
 
-         if (!document.querySelector("#learned")) {
-            return setTimeout(() => {
-               document
-                  .querySelector("#learned")
-                  .scrollIntoView({ behavior: "auto" });
-            }, 100);
-         }
-         document.querySelector("#learned").scrollIntoView({ behavior: "auto" });
+         this.$nextTick().then(()=>{
+            document.querySelector('#learned').scrollIntoView();
+         });
       },
       show_snacker(e, ind) {
          this.snacker_ind = ind;

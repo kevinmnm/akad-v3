@@ -1810,6 +1810,23 @@ let contents = [
        See the Pen <a href='https://codepen.io/kevinmnm/pen/NWrKaRM'>Vuetify Grid System</a> by kevin
        (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
      </iframe>`
+   },
+   {
+      topic: 'Scroll Behavior Tip',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1017',
+      date: '10/17/2020',
+      content: 'Vue',
+      mdi: 'mdi-vuejs',
+      name: 'Vue',
+      description: 'Custom method of asynchronous scrolling after a component loads.',
+      referenceLink1: '',
+      referenceLink2: '',
+      codepenEmbed: `<iframe height="500" style="width: 100%;" scrolling="no" title="Vue Scroll Behavior Tip" src="https://codepen.io/kevinmnm/embed/qBNOWee?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/qBNOWee'>Vue Scroll Behavior Tip</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
    }
 
 ];

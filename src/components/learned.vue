@@ -1,6 +1,7 @@
 <template>
    <v-container
       id="learned"
+      ref='learnedRef'
       class="mb-12 pb-0"
       v-if="renderIndex || renderIndex === 0"
       :style="{ border: learnBorder }"
@@ -29,14 +30,14 @@
       <v-row class="text-center">
          <v-col
             cols="12"
-            class="mt-0 pt-0 font-weight-light"
+            class="mt-0 pt-0 font-weight-light gre--text pb-0"
             style="font-family:monospace;"
          >
             {{ content[renderIndex].date }}
          </v-col>
 
          <v-col cols="12">
-            <h1>{{ content[renderIndex].topic }}</h1>
+            <h1 style='text-underline-position:under;'><u>{{ content[renderIndex].topic }}</u></h1>
          </v-col>
 
          <v-col cols="12">
@@ -73,6 +74,8 @@
                height="100%"
                width="100%"
                @click="prev_content()"
+               outlined
+               shaped
             >
                <v-icon x-large class="ma-0 pa-0">mdi-arrow-left-thick</v-icon>
             </v-btn>
@@ -93,6 +96,8 @@
                height="100%"
                width="100%"
                @click="next_content()"
+               outlined
+               shaped
             >
                <v-icon x-large class="ma-0 pa-0">mdi-arrow-right-thick</v-icon>
             </v-btn>
