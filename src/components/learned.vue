@@ -86,8 +86,22 @@
                width="100%"
                class="pa-0 ma-0"
                v-html="content[renderIndex].codepenEmbed"
+               v-if="content[renderIndex].codepenEmbed"
             >
             </v-card>
+
+            <v-img
+               width="100%"
+               v-if="content[renderIndex].img"
+               :src="require('../assets/' + content[renderIndex].img)"
+            ></v-img>
+            
+            <v-img
+               width="100%"
+               v-if="content[renderIndex].img2"
+               :src="require('../assets/' + content[renderIndex].img2)"
+            ></v-img>
+     
          </v-col>
          <v-col cols="1" class="ma-0 pa-0 hidden-sm-and-down">
             <v-btn
