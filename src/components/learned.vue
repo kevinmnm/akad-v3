@@ -6,11 +6,20 @@
       v-if="renderIndex || renderIndex === 0"
       :style="{ border: learnBorder }"
    >
+      <v-card
+         height="40px"
+         class="float-left text-center font-weight-bold ma-0 px-2"
+         :class="content[renderIndex].content.toLowerCase()"
+         style="cursor:default; z-index:10; font-size:25px; box-shadow:0 0 2px white"
+      >
+         {{ renderIndex + 1}}
+      </v-card>
+
       <v-tooltip bottom>
          <template v-slot:activator="{ on, attrs }">
             <v-avatar
                class="float-right ma-0 pa-0"
-               style="cursor:default; z-index:10;"
+               style="cursor:default; z-index:10; box-shadow:0 0 2px white"
                v-bind="attrs"
                v-on="on"
                tile
@@ -18,7 +27,8 @@
                <v-icon
                   :class="content[renderIndex].content.toLowerCase()"
                   x-large
-                  >{{ content[renderIndex].mdi }}
+               >
+                  {{ content[renderIndex].mdi }}
                </v-icon>
             </v-avatar>
          </template>
@@ -80,6 +90,8 @@
                <v-icon x-large class="ma-0 pa-0">mdi-arrow-left-thick</v-icon>
             </v-btn>
          </v-col>
+
+         <!-- Transition goes here -->
          <v-col cols="12" class="ma-0 pa-0 col-md-10">
             <v-card
                height="100%"
@@ -101,8 +113,9 @@
                v-if="content[renderIndex].img2"
                :src="require('../assets/' + content[renderIndex].img2)"
             ></v-img>
-     
          </v-col>
+         <!---->
+
          <v-col cols="1" class="ma-0 pa-0 hidden-sm-and-down">
             <v-btn
                class="d-flex justify-center align-center"
@@ -144,10 +157,16 @@ export default {
          window.open(this.content[this.renderIndex].referenceLink2);
       },
       prev_content() {
-         this.$store.state.render_index--;
+         if (this.$store.state.render_index === 0){
+            return console.log('First content.');
+         }
+         this.$store.commit('decrement_render_index');
       },
       next_content() {
-         this.$store.state.render_index++;
+         if (this.$store.state.render_index >= this.content.length - 1){
+            return console.log('Last content.');
+         }
+         this.$store.commit('increment_render_index');
       }
    }
 };

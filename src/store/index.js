@@ -14,6 +14,12 @@ export default new Vuex.Store({
       },
       change_render_index(state, payload) {
          state.render_index = payload;
+      },
+      increment_render_index(state) {
+         state.render_index++;
+      },
+      decrement_render_index(state) {
+         state.render_index--;
       }
    },
    actions: {},

@@ -57,7 +57,7 @@
                :class="all.content.toLowerCase()"
                v-show="all.show"
                @click="show_learned(ind)"
-               style="cursor:pointer;"
+               style="cursor:pointer; border: 1px solid white !important;"
                @mouseenter="show_snacker($event, ind)"
                @mouseleave="snacker = false"
             >

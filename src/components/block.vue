@@ -2,11 +2,11 @@
    <v-container>
    <v-card raised rounded>
       <v-row class="text-center block_bg rounded-md">
-         <v-col cols="9" class="col-sm-11 pa-0 ma-0 text-left pl-5">
+         <v-col cols="9" class="col-sm-11 pa-0 ma-0 text-left pl-5" style="box-shadow:0 0 2px white;">
             <h2>Sort By</h2>
          </v-col>
          <v-divider class='mb-2'></v-divider>
-         <v-col cols="3" class="col-sm-1 pa-0 ma-0">
+         <v-col cols="3" class="col-sm-1 pa-0 ma-0" style="box-shadow:0 0 2px white;">
             <v-menu
                offset-y
                transition="slide-y-transition"
@@ -94,7 +94,7 @@
          </v-container>
       </v-snackbar>
 
-      <v-row class="d-flex justify-center rounded block_bg">
+      <v-row class="d-flex justify-center rounded block_bg" style="box-shadow:0 0 2px white;">
          <v-card
             hover
             v-for="(all, ind) in content"
