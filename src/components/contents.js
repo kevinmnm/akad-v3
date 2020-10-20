@@ -683,7 +683,7 @@ let contents = [
       referenceLink1: 'https://firebase.google.com/docs/auth/web/password-auth',
       referenceLink2: 'https://firebase.google.com/docs/reference/js/firebase.auth?authuser=0',
       img: '',
-      codepenEmbed: `<iframe height="650" style="width: 100%;" scrolling="no" title="Firebase Useful Commands" src="https://codepen.io/kevinmnm/embed/mdPRgQG?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      codepenEmbed: `<iframe height="650" style="width: 100%;" scrolling="no" title="Firebase Useful Commands" src="https://codepen.io/kevinmnm/embed/mdPRgQG?height=265&theme-id=dark&default-tab=html" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
      See the Pen <a href='https://codepen.io/kevinmnm/pen/mdPRgQG'>Firebase Useful Commands</a> by kevin
      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
    </iframe>`
@@ -1880,7 +1880,7 @@ let contents = [
       referenceLink1: '',
       referenceLink2: '',
       img: '',
-      codepenEmbed: `<iframe height="1500" style="width: 100%;" scrolling="no" title="Vuetify Reference" src="https://codepen.io/kevinmnm/embed/PozYpqq?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      codepenEmbed: `<iframe height="1500" style="width: 100%;" scrolling="no" title="Vuetify Reference" src="https://codepen.io/kevinmnm/embed/PozYpqq?height=265&theme-id=dark&default-tab=html" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
        See the Pen <a href='https://codepen.io/kevinmnm/pen/PozYpqq'>Vuetify Reference</a> by kevin
        (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
      </iframe>`
@@ -1936,6 +1936,60 @@ let contents = [
       img: '',
       codepenEmbed: `<iframe height="500" style="width: 100%;" scrolling="no" title="Vue Scroll Behavior Tip" src="https://codepen.io/kevinmnm/embed/qBNOWee?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
       See the Pen <a href='https://codepen.io/kevinmnm/pen/qBNOWee'>Vue Scroll Behavior Tip</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
+   },
+   {
+      topic: 'IntersectionObserver Basics',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1018',
+      date: '10/18/2020',
+      content: 'JS',
+      mdi: 'mdi-language-javascript',
+      name: 'JavaScript',
+      description: 'IntersectionObserver can be used to implement lazy-load (animation-wise) behavior for elements on the page.',
+      referenceLink1: 'https://www.youtube.com/watch?v=_5Bu3JY-ZHc&ab_channel=DesignCourse',
+      referenceLink2: 'https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="IntersctionObserver() Basics" src="https://codepen.io/kevinmnm/embed/eYzZEXN?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/eYzZEXN'>IntersctionObserver() Basics</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
+   },
+   {
+      topic: 'IntersectionObserver Details',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1019',
+      date: '10/19/2020',
+      content: 'JS',
+      mdi: 'mdi-language-javascript',
+      name: 'JavaScript',
+      description: 'IntersectionObserver detailed information.',
+      referenceLink1: 'https://www.youtube.com/watch?v=_5Bu3JY-ZHc&ab_channel=DesignCourse',
+      referenceLink2: 'https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="IntersectionObserver Details" src="https://codepen.io/kevinmnm/embed/eYzZMRr?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/eYzZMRr'>IntersectionObserver Details</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
+   },
+   {
+      topic: 'IntersectionObserver Quick - JS',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1020',
+      date: '10/20/2020',
+      content: 'JS',
+      mdi: 'mdi-language-javascript',
+      name: 'JavaScript',
+      description: 'Skeleton plate syntax.',
+      referenceLink1: 'https://www.youtube.com/watch?v=_5Bu3JY-ZHc&ab_channel=DesignCourse',
+      referenceLink2: 'https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="IntersectionObserver Quick - JS" src="https://codepen.io/kevinmnm/embed/NWrNYyj?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/NWrNYyj'>IntersectionObserver Quick - JS</a> by kevin
       (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
     </iframe>`
    }
