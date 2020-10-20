@@ -1992,6 +1992,24 @@ let contents = [
       See the Pen <a href='https://codepen.io/kevinmnm/pen/NWrNYyj'>IntersectionObserver Quick - JS</a> by kevin
       (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
     </iframe>`
+   },
+   {
+      topic: 'Backend Quick Setup Guide',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1021',
+      date: '10/21/2020',
+      content: 'Mongo',
+      mdi: 'mdi-leaf',
+      name: 'MongoDB',
+      description: 'Quick initial setup note.',
+      referenceLink1: '',
+      referenceLink2: '',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="Backend Quick Setup Guide" src="https://codepen.io/kevinmnm/embed/pobEwYr?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/pobEwYr'>Backend Quick Setup Guide</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
    }
 
 ];
