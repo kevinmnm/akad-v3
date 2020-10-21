@@ -2010,6 +2010,42 @@ let contents = [
       See the Pen <a href='https://codepen.io/kevinmnm/pen/pobEwYr'>Backend Quick Setup Guide</a> by kevin
       (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
     </iframe>`
+   },
+   {
+      topic: 'CORS & Headers',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1022',
+      date: '10/22/2020',
+      content: 'Node',
+      mdi: 'mdi-nodejs',
+      name: 'Node',
+      description: 'Quick CORS and HTTP Header overview. API fetch request and server response overview.',
+      referenceLink1: '',
+      referenceLink2: '',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="CORS &amp; Header" src="https://codepen.io/kevinmnm/embed/abZmEMo?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/abZmEMo'>CORS &amp; Header</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
+   },
+   {
+      topic: 'API Basics',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1023',
+      date: '10/23/2020',
+      content: 'Node',
+      mdi: 'mdi-nodejs',
+      name: 'Node',
+      description: 'Basic API setup overview.',
+      referenceLink1: 'https://developer.mozilla.org/en-US/docs/Web/API/Body/json',
+      referenceLink2: 'https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="API Basics" src="https://codepen.io/kevinmnm/embed/JjKbdXY?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/JjKbdXY'>API Basics</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
    }
 
 ];
