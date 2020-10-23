@@ -2046,6 +2046,60 @@ let contents = [
       See the Pen <a href='https://codepen.io/kevinmnm/pen/JjKbdXY'>API Basics</a> by kevin
       (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
     </iframe>`
+   },
+   {
+      topic: 'Class In-Depth',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1024',
+      date: '10/24/2020',
+      content: 'JS',
+      mdi: 'mdi-language-javascript',
+      name: 'JavaScript',
+      description: 'Re-visiting class to utilize it in backend.',
+      referenceLink1: '',
+      referenceLink2: '',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="Class In-Depth" src="https://codepen.io/kevinmnm/embed/WNxoGQR?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/WNxoGQR'>Class In-Depth</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
+   },
+   {
+      topic: 'Password Encryption',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1025',
+      date: '10/25/2020',
+      content: 'Express',
+      mdi: 'mdi-nodejs',
+      name: 'Express',
+      description: 'Basic overview of hashing password for security.',
+      referenceLink1: '',
+      referenceLink2: '',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="Password Encryption" src="https://codepen.io/kevinmnm/embed/RwRodBE?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/RwRodBE'>Password Encryption</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
+   },
+   {
+      topic: 'Heroku Deploy Basics',
+      show: true,
+      selected: false,
+      uniqueIdMatch: 'z1026',
+      date: '10/26/2020',
+      content: 'Other',
+      mdi: 'mdi-unfold-more-vertical',
+      name: 'Other',
+      description: 'Basic setup guide for Heroku deployment.',
+      referenceLink1: '',
+      referenceLink2: '',
+      img: '',
+      codepenEmbed: `<iframe height="1000" style="width: 100%;" scrolling="no" title="Heroku Deployment Basics" src="https://codepen.io/kevinmnm/embed/ZEOLKWm?height=265&theme-id=dark&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+      See the Pen <a href='https://codepen.io/kevinmnm/pen/ZEOLKWm'>Heroku Deployment Basics</a> by kevin
+      (<a href='https://codepen.io/kevinmnm'>@kevinmnm</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>`
    }
 
 ];
