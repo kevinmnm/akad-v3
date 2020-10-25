@@ -126,20 +126,25 @@
 </template>
 
 <script>
-import contents from "./contents.js";
+// import contents from "./contents.js";
 import content_vuetify from "./content-vuetify.js";
 
 export default {
    name: "blockComp",
    data() {
       return {
-         content: contents,
+         // content: contents,
          content_vuetify: content_vuetify,
          elevate_block: 5,
          total_block: 0,
          snacker: false,
          snacker_index: null
       };
+   },
+   computed: {
+      content(){
+         return this.$store.state.notes;
+      }
    },
    methods: {
       // Animation on hover.

@@ -50,7 +50,7 @@
 
 <script>
 import Main from "./views/Main.vue";
-import contents from "@/components/contents.js";
+// import contents from "@/components/contents.js";
 import Admin from "./views/Admin.vue";
 
 export default {
@@ -61,8 +61,13 @@ export default {
    },
    data(){
       return {
-         content: contents,
+         //content: contents,
          admin: false
+      }
+   },
+   computed: {
+      content() {
+         return this.$store.state.notes;
       }
    },
    methods: {
@@ -72,6 +77,8 @@ export default {
       }
    },
    mounted(){
+      this.$store.dispatch('fetchNotes');
+
       if (localStorage.theme !== undefined){
          this.$vuetify.theme.dark = localStorage.theme;
       }

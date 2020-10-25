@@ -51,16 +51,21 @@
 </template>
 
 <script>
-import contents from "./contents.js";
+// import contents from "./contents.js";
 
 export default {
    name: "calendarComp",
    data() {
       return {
-         content: contents,
+         // content: contents,
          calendar: "",
          events: []
       };
+   },
+   computed: {
+      content() {
+         return this.$store.state.notes;
+      }
    },
    methods: {
       prev() {

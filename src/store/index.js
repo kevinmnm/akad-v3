@@ -5,10 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
    state: {
+      notes: null,
       main_view_type: 'block',
       render_index: null
    },
    mutations: {
+      FETCH_NOTES(state, payload) {
+         state.notes = payload;
+      },
       change_view_type(state, payload) {
          state.main_view_type = payload;
       },
@@ -22,6 +26,16 @@ export default new Vuex.Store({
          state.render_index--;
       }
    },
-   actions: {},
+   actions: {
+      fetchNotes({commit}) {
+         fetch('http://localhost:5500/notes', { method: 'GET' }) // headers: { 'Content-Type: 'application/json' }
+            .then( res => {
+               res.json().then( data => {
+                  commit('FETCH_NOTES', data);
+               }).catch( error => console.log(error) );
+            })
+            .catch( err => console.log(err) );
+      }
+   },
    modules: {}
 });

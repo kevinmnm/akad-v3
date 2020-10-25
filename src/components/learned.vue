@@ -134,17 +134,20 @@
 </template>
 
 <script>
-import contents from "@/components/contents.js";
+// import contents from "@/components/contents.js";
 
 export default {
    name: "learnedComp",
    data() {
       return {
-         content: contents,
+         // content: contents,
          learnBorder: `2px solid lightGrey`
       };
    },
    computed: {
+      content() {
+         return this.$store.state.notes;
+      },
       renderIndex() {
          return this.$store.state.render_index;
       }

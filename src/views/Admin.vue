@@ -5,10 +5,11 @@
             <h3>Admin Database Access</h3>
          </v-col>
          <v-col cols="12" class="col-sm-8 col-md-6">
-            <v-form>
+            <v-form action="http://localhost:5500/login" method="POST">
                <v-text-field
                   placeholder="ID"
                   type="email"
+                  name="username"
                   autocomplete='false'
                   filled
                   required
@@ -16,6 +17,7 @@
                <v-text-field
                   placeholder="Password"
                   type="password"
+                  name="password"
                   autocomplete='false'
                   filled
                   required

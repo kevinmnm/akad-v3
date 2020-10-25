@@ -25,7 +25,7 @@ export default {
       themeChanger(){
          this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
          localStorage.theme = this.$vuetify.theme.dark;
-         console.log(localStorage.theme);
+         console.log('Dark Mode: '+localStorage.theme);
       }
    },
    mounted() {

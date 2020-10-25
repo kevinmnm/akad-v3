@@ -79,19 +79,24 @@
 </template>
 
 <script>
-import contents from "./contents.js";
+// import contents from "./contents.js";
 import langs from "./content-vuetify.js";
 
 export default {
    name: "listComp",
    data() {
       return {
-         content: contents,
+         // content: contents,
          lang: langs,
          search_input: null,
          snacker_ind: null,
          snacker: false
       };
+   },
+   computed: {
+      content(){
+         return this.$store.state.notes
+      }
    },
    methods: {
       sorting(ind) {
