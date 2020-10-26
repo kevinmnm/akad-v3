@@ -5,24 +5,22 @@
             <h3>Admin Database Access</h3>
          </v-col>
          <v-col cols="12" class="col-sm-8 col-md-6">
-            <v-form action="http://localhost:5500/login" method="POST">
+            <v-form action="http://localhost:5500" method="POST" autocomplete="off">
                <v-text-field
-                  placeholder="ID"
-                  type="email"
+                  label="Username"
+                  type="text"
                   name="username"
-                  autocomplete='false'
                   filled
                   required
                ></v-text-field>
                <v-text-field
-                  placeholder="Password"
+                  label="Password"
                   type="password"
                   name="password"
-                  autocomplete='false'
                   filled
                   required
                ></v-text-field>
-               <v-btn type="submit">Login</v-btn>
+               <v-btn @click="submit()">Login</v-btn>
             </v-form>
          </v-col>
       </v-row>
@@ -39,7 +37,14 @@ export default {
       ThemeButton
    },
    data() {
-      return {};
+      return {
+
+      };
+   },
+   methods: {
+      submit(){
+         alert('ss');
+      }
    }
 };
 </script>
