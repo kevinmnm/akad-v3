@@ -2114,7 +2114,7 @@ let contents = [
 //    date: '',
 //    content: 'Mysql',
 //    mdi: 'mdi-database-search',
-//    name: '',
+//    name: 'MySQL',
 //    description: '',
 //    referenceLink1: '',
 //    referenceLink2: '',

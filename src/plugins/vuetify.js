@@ -21,7 +21,8 @@ export default new Vuetify({
             other: '#FFFFFF',
             gre: '#303030',
             gree: '#66BB6A',
-            txt: '#000000'
+            txt: '#000000',
+            greenText: '#1B5E20'
          },
          dark: {
             block_bg: '#000000',
@@ -37,7 +38,8 @@ export default new Vuetify({
             other: '#000000',
             gre: '#D3D3D3',
             gree: '#2E7D32',
-            txt: '#FFFFFF'
+            txt: '#FFFFFF',
+            greenText: '#C8E6C9'
          }
       }
    }
