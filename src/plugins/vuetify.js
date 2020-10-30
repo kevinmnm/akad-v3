@@ -35,7 +35,7 @@ export default new Vuetify({
             mongo: '#FFCC80',
             mysql: '#424242',
             firebase: '#D50000',
-            other: '#000000',
+            other: '#546E7A',
             gre: '#D3D3D3',
             gree: '#2E7D32',
             txt: '#FFFFFF',

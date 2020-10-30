@@ -134,13 +134,11 @@
 </template>
 
 <script>
-// import contents from "@/components/contents.js";
 
 export default {
    name: "learnedComp",
    data() {
       return {
-         // content: contents,
          learnBorder: `2px solid lightGrey`
       };
    },
@@ -161,13 +159,13 @@ export default {
       },
       prev_content() {
          if (this.$store.state.render_index === 0){
-            return console.log('First content.');
+            return alert('First content.');
          }
          this.$store.commit('decrement_render_index');
       },
       next_content() {
          if (this.$store.state.render_index >= this.content.length - 1){
-            return console.log('Last content.');
+            return alert('Last content.');
          }
          this.$store.commit('increment_render_index');
       }

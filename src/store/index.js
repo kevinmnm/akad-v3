@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       notes: null,
+      // notes_loaded: false,
       main_view_type: 'block',
       render_index: null
    },

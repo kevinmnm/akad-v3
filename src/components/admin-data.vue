@@ -102,7 +102,7 @@
             <v-col cols="12" class="pa-1">
                <v-textarea
                   label="Codepen (Iframe)"
-                  hint="Optional"
+                  hint="Make sure the height is 1000!"
                   v-model="codepenEmbed"
                   filled
                   outlined
@@ -117,16 +117,17 @@
 
       <v-dialog v-model="dialog" persistent>
          <v-card
-            width="50%"
-            height="50%"
-            class="ma-auto pa-5 white black--text"
+            height="80%"
+            class="ma-auto pa-5 white black--text text-center"
+            style="word-wrap:break-word;"
          >
             <v-card-title>Submitting following data</v-card-title>
-            <v-card-text class="black--text">
-               <pre>{{ final_data }}</pre>
+            <v-card-text class="black--text" style="word-wrap:break-word;">
+               <pre class="yellow lighten-5 text-left" style="font-size:14px; word-wrap:break-word; white-space:pre-wrap;">{{ final_data }}</pre>
             </v-card-text>
-            <v-btn block bottom class="success mb-3" @click="posting()">Confirm</v-btn>
-            <v-btn block bottom class="error" @click="dialog = false">Cancel</v-btn>
+            <v-btn bottom x-large width="50%" class="success mb-3" @click="posting()">Confirm</v-btn> 
+            <v-divider></v-divider>
+            <v-btn bottom x-large width="50%" class="error" @click="dialog = false">Cancel</v-btn>
          </v-card>
       </v-dialog>
    </v-row>
@@ -163,8 +164,6 @@ export default {
    },
    methods: {
       async posting(){
-         // let finalized = JSON.stringify(this.final_data.replace(/\n/g));
-
          let resp = await fetch('http://localhost:5500/add', {
             headers: { 
                'Content-Type': 'application/json' 
@@ -173,11 +172,12 @@ export default {
             body: JSON.stringify(this.final_data)
          });
 
-         resp.json().then( res =>  console.log(res) );
+         resp.json().then( res => {
+            console.log(res);
+            window.location.reolad();
+         }).catch( err => console.log(err) );
       },
       show_dialog(){
-         // this.final_data = `{\n topic: "${this.topic}" \n show: true \n selected: false \n uniqueIdMatch: ${this.uniqueIdMatch} \n date: "${this.date}" \n content: "${this.content}" \n mdi: "${this.mdi}" \n name: ${this.name} \n description: ${this.description} \n referenceLink1: "${this.referenceLink1}" \n referenceLink2: "${this.referenceLink2}" \n img: "${this.img}" \n codepenEmbed: "${this.codepenEmbed}" \n}`;
-
          this.final_data = new Object();
          this.final_data.topic = this.topic;
          this.final_data.uniqueIdMatch = this.uniqueIdMatch;
@@ -190,9 +190,6 @@ export default {
          this.final_data.referenceLink2 = this.referenceLink2;
          this.final_data.img = this.img;
          this.final_data.codepenEmbed = this.codepenEmbed;
-
-         console.log(typeof this.final_data);
-         console.log(this.final_data);
 
          this.dialog = true;
 
