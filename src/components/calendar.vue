@@ -51,13 +51,11 @@
 </template>
 
 <script>
-// import contents from "./contents.js";
 
 export default {
    name: "calendarComp",
    data() {
       return {
-         // content: contents,
          calendar: "",
          events: []
       };
