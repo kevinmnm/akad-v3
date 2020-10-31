@@ -174,7 +174,7 @@ export default {
 
          resp.json().then( res => {
             console.log(res);
-            window.location.reolad();
+            window.location.reload();
          }).catch( err => console.log(err) );
       },
       show_dialog(){

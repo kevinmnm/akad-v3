@@ -82,18 +82,6 @@ export default {
             document.querySelector("#learned").scrollIntoView();
          });
 
-         // let learned = document.querySelector('#learned');
-
-         // if (learned){
-         //    learned.scrollIntoView();
-         // } else {
-         //    function repeat(){
-         //       learned.scrollIntoView();
-         //       if (!learned.scrollIntoView()){
-         //          return repeat();
-         //       }
-         //    }
-         // }
       },
       getEventColor(event) {
          return event.color;
