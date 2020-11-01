@@ -19,7 +19,7 @@
                   filled
                   required
                ></v-text-field>
-               <v-btn @click="submit()">Login</v-btn>
+               <v-btn @click="login()">Login</v-btn>
             </v-form>
          </v-col>
       </v-row>
@@ -35,19 +35,24 @@ export default {
       }
    },
    methods: {
-      async submit(){
-         let response = await fetch('http://localhost:5500/login', {
+      async login(){
+         let response = await fetch(this.$store.state.fetch_url + '/login', {
             headers: {
                'Content-Type': 'application/json'
             },
+            credentials: 'include',
             method: 'POST',
             body: JSON.stringify({
                username: this.username_fetch,
                password: this.password_fetch
             })
          });
-
-         response.json().then( data => console.log(data) );
+         if (response.status === 401) return response.json().then( data => alert(data) );
+         response.json()
+            .then( data => {
+               this.$store.commit('FETCH_AUTH', data.isLoggedIn);
+               console.log(data.isLoggedIn);
+            });
       }
    }
 }

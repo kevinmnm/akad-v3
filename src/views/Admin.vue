@@ -1,6 +1,6 @@
 <template>
    <v-container>
-      <AdminLogin v-if="temp"></AdminLogin>
+      <AdminLogin v-if="!authen"></AdminLogin>
       <AdminData v-else></AdminData>
       <ThemeButton />
    </v-container>
@@ -13,16 +13,32 @@ import AdminData from "@/components/admin-data.vue";
 
 export default {
    name: "AdminPage",
-   data(){
-      return {
-         temp: false
-      }
-   },
    components: {
       ThemeButton,
       AdminLogin,
       AdminData
-   }
+   },
+   data() {
+      return {};
+   },
+   computed: {
+      authen() {
+         return this.$store.state.auth_status;
+      }
+   },
+   // methods: {
+   //    dispatch_auth() {
+   //       this.$store.dispatch("fetchAuth");
+   //    }
+   // },
+   // watch: {
+   //    authen() {
+   //       this.dispatch_auth();
+   //    }
+   // },
+   // mounted() {
+   //    this.dispatch_auth();
+   // }
 };
 </script>
 

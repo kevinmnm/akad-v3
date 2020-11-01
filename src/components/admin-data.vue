@@ -1,5 +1,7 @@
 <template>
    <v-row class="justify-center">
+      <v-btn dense @click="logout()">Log Out</v-btn>
+      <v-btn @click="test_fetch()">test fetch</v-btn>
       <v-col class="text-center" cols="12" style="font-weight:bold;">
          TOTAL:
          <span class="greenText--text">
@@ -164,7 +166,7 @@ export default {
    },
    methods: {
       async posting(){
-         let resp = await fetch('http://localhost:5500/add', {
+         let resp = await fetch(this.$store.state.fetch_url + '/add', {
             headers: { 
                'Content-Type': 'application/json' 
             },
@@ -204,6 +206,16 @@ export default {
          if (!this.uniqueIdMatch) {this.uniqueIdMatch_error = true; this.dialog = false;}
          if (!this.description) {this.description_error = true; this.dialog = false;}
          if (!this.content_setter) {this.content_setter_error = true; this.dialog = false;}
+      },
+      logout(){
+         fetch(this.$store.state.fetch_url + '/logout')
+            .then( res => {
+               res.json().then( data => console.log(data) );
+            })
+            .catch( err => alert(err) );
+      },
+      test_fetch(){
+         this.$store.dispatch('fetchAuth');
       }
    },
    watch: {

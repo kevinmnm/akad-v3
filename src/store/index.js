@@ -6,9 +6,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       notes: null,
-      // notes_loaded: false,
+      fetch_url: 'http://localhost:5500',
       main_view_type: 'block',
-      render_index: null
+      render_index: null,
+      auth_status: false
    },
    mutations: {
       FETCH_NOTES(state, payload) {
@@ -25,17 +26,31 @@ export default new Vuex.Store({
       },
       decrement_render_index(state) {
          state.render_index--;
+      },
+      FETCH_AUTH(state, payload) {
+         state.auth_status = payload;
       }
    },
    actions: {
-      fetchNotes({commit}) {
-         fetch('http://localhost:5500/notes', { method: 'GET' }) // headers: { 'Content-Type: 'application/json' }
-            .then( res => {
-               res.json().then( data => {
+      fetchNotes({ commit }) {
+         fetch(this.state.fetch_url + '/notes', { method: 'GET' }) // headers: { 'Content-Type: 'application/json' }
+            .then(res => {
+               res.json().then(data => {
                   commit('FETCH_NOTES', data);
-               }).catch( error => console.log(error) );
+               }).catch(error => console.log(error));
             })
-            .catch( err => console.log(err) );
+            .catch(err => console.log(err));
+      },
+      fetchAuth({ commit }) {
+         fetch(this.state.fetch_url + '/auth')
+            .then(res => {
+               res.json()
+                  .then(data => {
+                     commit('FETCH_AUTH', data.isLoggedIn);
+                     console.log(data);
+                  })
+                  .catch(err => console.log(err));
+            })
       }
    },
    modules: {}
