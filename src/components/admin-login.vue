@@ -40,7 +40,7 @@ export default {
             headers: {
                'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            // credentials: 'include',
             method: 'POST',
             body: JSON.stringify({
                username: this.username_fetch,
@@ -50,9 +50,15 @@ export default {
          if (response.status === 401) return response.json().then( data => alert(data) );
          response.json()
             .then( data => {
-               this.$store.commit('FETCH_AUTH', data.isLoggedIn);
-               console.log(data.isLoggedIn);
-            });
+               localStorage.token = data.token;
+               localStorage.userId = data.userId;
+               console.log(data);
+            })
+         // response.json()
+         //    .then( data => {
+         //       this.$store.commit('FETCH_AUTH', data.isLoggedIn);
+         //       console.log(data.isLoggedIn);
+         //    });
       }
    }
 }
