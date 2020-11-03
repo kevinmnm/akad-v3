@@ -1,4 +1,24 @@
-# adak-v3
+# **Notes Archive (ADAK-V3)**
+Personal learning progress tracker version 3. 
+
+## Table of Contents
+- [ Description ](#desc)
+- [ Resources ](#resources)
+- [ Bug Fix ](#bug_fix)
+- [ License ](#license)
+
+<a name="desc"></a>
+## Description
+This is a full-stack application implementing REST API with JWT. Please visit [HERE](https://adakapi.herokuapp.com/) to see API I made for this project.
+
+<a name="resources"></a>
+## Resources
+- HTML
+- CSS
+- JavaScript
+- Vue.js
+- Vuetify
+- Animate.css
 
 ## Project setup
 ```
