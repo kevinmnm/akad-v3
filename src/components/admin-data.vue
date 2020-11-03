@@ -1,7 +1,6 @@
 <template>
    <v-row class="justify-center">
       <v-btn dense @click="logout()">Log Out</v-btn>
-      <v-btn @click="test_fetch()">test fetch</v-btn>
       <v-col class="text-center" cols="12" style="font-weight:bold;">
          TOTAL:
          <span class="greenText--text">
@@ -168,7 +167,8 @@ export default {
       async posting(){
          let resp = await fetch(this.$store.state.fetch_url + '/add', {
             headers: { 
-               'Content-Type': 'application/json' 
+               'Content-Type': 'application/json',
+               Authorization: 'Bearer ' + localStorage.token 
             },
             method: 'POST',
             body: JSON.stringify(this.final_data)
@@ -176,7 +176,13 @@ export default {
 
          resp.json().then( res => {
             console.log(res);
-            window.location.reload();
+            if (res) {
+               document.querySelector('.v-btn__content').click();
+               this.$store.dispatch('fetchNotes');
+            } else {
+               alert('Please log in first.');
+               this.$store.dispatch('fetchAuth');
+            }
          }).catch( err => console.log(err) );
       },
       show_dialog(){
@@ -208,13 +214,7 @@ export default {
          if (!this.content_setter) {this.content_setter_error = true; this.dialog = false;}
       },
       logout(){
-         fetch(this.$store.state.fetch_url + '/logout')
-            .then( res => {
-               res.json().then( data => console.log(data) );
-            })
-            .catch( err => alert(err) );
-      },
-      test_fetch(){
+         localStorage.token = 'cloaked';
          this.$store.dispatch('fetchAuth');
       }
    },

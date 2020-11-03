@@ -42,15 +42,16 @@ export default new Vuex.Store({
             .catch(err => console.log(err));
       },
       fetchAuth({ commit }) {
-         fetch(this.state.fetch_url + '/auth')
+         fetch(this.state.fetch_url + '/auth', {
+            headers: { Authorization: 'Bearer ' + localStorage.token }
+         })
             .then(res => {
-               res.json()
-                  .then(data => {
-                     commit('FETCH_AUTH', data.isLoggedIn);
-                     console.log(data);
-                  })
-                  .catch(err => console.log(err));
+               return res.json()
             })
+            .then(data => { 
+               commit('FETCH_AUTH', data);
+               data ? console.log('Authenticated') : console.log('Not Authenticated');
+            });
       }
    },
    modules: {}

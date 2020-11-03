@@ -6,6 +6,7 @@
             text
             height="100%"
             class="font-weight-bold pa-0"
+            :to="{name: 'Main'}"
          >
             block
          </v-btn>
@@ -14,6 +15,7 @@
             text
             height="100%"
             class="font-weight-bold"
+            :to="{name: 'Main'}"
          >
             list
          </v-btn>
@@ -22,6 +24,7 @@
             text
             height="100%"
             class="font-weight-bold"
+            :to="{name: 'Main'}"
          >
             calendar
          </v-btn>
@@ -36,6 +39,7 @@
                   height="100%"
                   v-on="on"
                   @click="admin = true"
+                  :to="{name: 'Admin'}"
                >
                   <v-icon height="100%">mdi-shield-account-outline</v-icon>
                </v-btn>
@@ -45,21 +49,23 @@
       </v-app-bar>
 
       <v-main>
-         <Main v-show="!admin" />
-         <Admin v-show="admin" />
+         <!-- <Main v-show="!admin" />
+         <Admin v-show="admin" /> -->
+         <router-view></router-view>
       </v-main>
+
    </v-app>
 </template>
 
 <script>
-import Main from "./views/Main.vue";
-import Admin from "./views/Admin.vue";
+// import Main from "./views/Main.vue";
+// import Admin from "./views/Admin.vue";
 
 export default {
    name: "App",
    components: {
-      Main,
-      Admin
+      // Main,
+      // Admin
    },
    data() {
       return {
@@ -78,6 +84,9 @@ export default {
       }
    },
    mounted() {
+      if (!localStorage.token) {
+         localStorage.token = 'cloaked';
+      }
       this.$store.dispatch("fetchNotes");
 
       if (localStorage.theme !== undefined) {

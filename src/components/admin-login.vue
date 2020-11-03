@@ -54,6 +54,9 @@ export default {
                localStorage.userId = data.userId;
                console.log(data);
             })
+            .then( () => {
+               this.$store.dispatch('fetchAuth');
+            });
          // response.json()
          //    .then( data => {
          //       this.$store.commit('FETCH_AUTH', data.isLoggedIn);
