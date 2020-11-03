@@ -10,7 +10,7 @@ Personal learning progress tracker version 3.
 
 <a name="desc"></a>
 ## Description
-This is a full-stack application implementing REST API with JWT. Please visit [HERE](https://adakapi.herokuapp.com/) to see backend API I made for this project. Both frontend and backend is deployed on [Heroku](https://www.heroku.com).
+This is a full-stack application implementing REST API with JWT. Please visit [HERE](https://adakapi.herokuapp.com/) to see backend API I made for this project. Both frontend and backend is deployed on [Heroku](https://www.heroku.com). This app is specifically for myself; therefore, no one will be able to create account and alter the database. Authentication and pre-flight header configuration are done with JWT and CORS package.
 
 <a name="resources"></a>
 ## Resources
