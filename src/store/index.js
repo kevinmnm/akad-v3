@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       notes: null,
-      fetch_url: 'http://localhost:5500',
+      fetch_url: 'https://adakapi.herokuapp.com',
       main_view_type: 'block',
       render_index: null,
       auth_status: false
@@ -42,6 +42,7 @@ export default new Vuex.Store({
             .catch(err => console.log(err));
       },
       fetchAuth({ commit }) {
+         // console.log(localStorage.token);
          fetch(this.state.fetch_url + '/auth', {
             headers: { Authorization: 'Bearer ' + localStorage.token }
          })

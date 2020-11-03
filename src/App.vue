@@ -111,4 +111,12 @@ export default {
 ::-webkit-scrollbar-thumb {
    background: #888;
 }
+
+u {
+   text-underline-position: under;
+}
+
+a {
+   text-decoration: none;
+}
 </style>

@@ -28,7 +28,7 @@ export default {
    },
    beforeMount() {
       this.$store.dispatch('fetchAuth');
-   }
+   },
    // mounted() {
    //    this.$store.dispatch('fetchAuth');
    // }

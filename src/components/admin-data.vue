@@ -160,7 +160,7 @@ export default {
          referenceLink2: "",
          img: "",
          codepenEmbed: "",
-         final_data: ""
+         final_data: "",
       };
    },
    methods: {
@@ -175,7 +175,6 @@ export default {
          });
 
          resp.json().then( res => {
-            console.log(res);
             if (res) {
                document.querySelector('.v-btn__content').click();
                this.$store.dispatch('fetchNotes');
@@ -230,7 +229,7 @@ export default {
          if (val === 'MYSQL') {this.content = 'Mysql'; this.name = 'MySQL'; this.mdi = 'mdi-database-search'; }
          if (val === 'FIREBASE') {this.content = 'Firebase'; this.name = 'Firebase'; this.mdi = 'mdi-firebase'; }
          if (val === 'OTHER') {this.content = 'Other'; this.name = 'Other'; this.mdi = 'mdi-unfold-more-vertical'; }
-      }
+      },
    },
    mounted() {
       for (let all of content_vuetify) {
