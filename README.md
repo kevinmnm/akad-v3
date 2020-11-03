@@ -20,6 +20,22 @@ This is a full-stack application implementing REST API with JWT. Please visit [H
 - Vue.js
 - Vuetify
 - Animate.css
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- CORS
+
+<a name="bug_fix"></a>
+## Bug Fix
+As this is my first full-stack application, I had some confusion on how SPA can be connected to server. I first approached invalid method for SPA which is utlizing <b>Session</b> instead of <b>JWT</b>. Although I spent lots of time learning about invalid method, it provided me an opportunity to learned a lot about Cookies and Sessions.
+
+<a name="license"></a>
+## License
+
+MIT
 
 ## Project setup
 ```
