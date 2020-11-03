@@ -9,10 +9,11 @@ Personal learning progress tracker version 3.
 
 <a name="desc"></a>
 ## Description
-This is a full-stack application implementing REST API with JWT. Please visit [HERE](https://adakapi.herokuapp.com/) to see API I made for this project.
+This is a full-stack application implementing REST API with JWT. Please visit [HERE](https://adakapi.herokuapp.com/) to see backend API I made for this project.
 
 <a name="resources"></a>
 ## Resources
+### Frontend
 - HTML
 - CSS
 - JavaScript
