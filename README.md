@@ -6,6 +6,7 @@ Personal learning progress tracker version 3.
 - [ Resources ](#resources)
 - [ Bug Fix ](#bug_fix)
 - [ License ](#license)
+- [ Project Setup ](#project_setup)
 
 <a name="desc"></a>
 ## Description
@@ -37,6 +38,7 @@ As this is my first full-stack application, I had some confusion on how SPA can 
 
 MIT
 
+<a name="project_setup"></a>
 ## Project setup
 ```
 npm install
