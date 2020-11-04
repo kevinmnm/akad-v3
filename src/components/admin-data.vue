@@ -176,7 +176,8 @@ export default {
 
          resp.json().then( res => {
             if (res) {
-               document.querySelector('.v-btn__content').click();
+               // document.querySelector('.v-btn__content').click();
+               this.$route.push('/');
                this.$store.dispatch('fetchNotes');
             } else {
                alert('Please log in first.');

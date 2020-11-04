@@ -3,30 +3,40 @@
       <v-app-bar absolute dense app>
          <v-btn
             @click="$store.commit('change_view_type', 'block'), reset()"
-            text
             height="100%"
-            class="font-weight-bold pa-0"
+            :width="nav_width"
+            class="font-weight-bold pa-0 ma-1"
             :to="{name: 'Main'}"
+            text
+            dense
+            tile
          >
-            block
+            <span class="hidden-xs-only">block</span>
+            <v-icon class="hidden-sm-and-up">mdi-square-rounded</v-icon>
          </v-btn>
          <v-btn
             @click="$store.commit('change_view_type', 'list'), reset()"
-            text
             height="100%"
-            class="font-weight-bold"
+            :width="nav_width"
+            class="font-weight-bold ma-1"
             :to="{name: 'Main'}"
+            text
+            tile
          >
-            list
+            <span class="hidden-xs-only">list</span>
+            <v-icon class="hidden-sm-and-up">mdi-format-list-bulleted-square</v-icon>
          </v-btn>
          <v-btn
             @click="$store.commit('change_view_type', 'calendar'), reset()"
-            text
             height="100%"
-            class="font-weight-bold"
+            :width="nav_width"
+            class="font-weight-bold ma-1"
             :to="{name: 'Main'}"
+            text
+            tile
          >
-            calendar
+            <span class="hidden-xs-only">calendar</span>
+            <v-icon class="hidden-sm-and-up">mdi-calendar-month</v-icon>
          </v-btn>
 
          <v-spacer></v-spacer>
@@ -75,6 +85,9 @@ export default {
    computed: {
       content() {
          return this.$store.state.notes;
+      },
+      nav_width() {
+         return this.$vuetify.breakpoint.name === 'xs' ? '50px' : '100px';
       }
    },
    methods: {
@@ -119,4 +132,5 @@ u {
 a {
    text-decoration: none;
 }
+
 </style>
