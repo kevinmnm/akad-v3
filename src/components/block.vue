@@ -121,10 +121,10 @@
                :key="all.uniqueIdMatch"
                width="35px"
                height="35px"
-               style='cursor:default; font-family: "Nunito", sans-serif;'
+               style='cursor:default; font-family: "Nunito", sans-serif; user-select:none;'
                @mouseenter="animateAdd($event, ind), (snacker = true)"
                @mouseleave="snacker = false"
-               @click="$store.commit('change_render_index', ind)"
+               @click="renderLearnedSection(ind)"
                :class="[
                   all.content.toLowerCase(),
                   { 'd-flex': all.show, 'd-none': !all.show }
@@ -176,6 +176,12 @@ export default {
                "animate__bounceIn",
                "animate__bounceOut"
             );
+         });
+      },
+      renderLearnedSection(ind){
+         this.$store.commit('change_render_index', ind);
+         this.$nextTick().then(() => {
+            document.querySelector("#learned").scrollIntoView();
          });
       },
       toggleShow(e, indd) {
