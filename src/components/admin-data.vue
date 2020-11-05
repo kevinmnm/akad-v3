@@ -177,7 +177,7 @@ export default {
          resp.json().then( res => {
             if (res) {
                // document.querySelector('.v-btn__content').click();
-               this.$route.push('/');
+               this.$router.push('/');
                this.$store.dispatch('fetchNotes');
             } else {
                alert('Please log in first.');
