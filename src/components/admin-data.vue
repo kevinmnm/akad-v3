@@ -7,10 +7,18 @@
             {{ $store.state.notes.length }}
          </span>
       </v-col>
-      <v-col cols="12" class="d-flex justify-start pl-0">
-         <v-card class="ma-0 font-weight-bold" flat>ADD NOTE</v-card>
+      <v-col cols="12" class="d-flex justify-center pa-5">
+         <!-- <v-card class="ma-0 font-weight-bold" flat>ADD NOTE</v-card> -->
+         <v-btn class="ma-1" width="100px" @click="show_add = !show_add">Add</v-btn>
+         <v-btn class="ma-1" width="100px">Update</v-btn>
+         <v-btn class="ma-1" width="100px">Delete</v-btn>
       </v-col>
-      <v-col cols="12" style="border: 1px solid darkGrey;">
+
+      <!-- ADD CONTENT COMPONENT STARTS HERE -->
+      <!-- ADD CONTENT COMPONENT STARTS HERE -->
+      <!-- ADD CONTENT COMPONENT STARTS HERE -->
+
+      <v-col cols="12" style="border: 1px solid darkGrey;" v-if="show_add">
          <v-form autocomplete="off" class="d-flex flex-row flex-wrap">
             <v-col cols="12" class="pa-1">
                <v-text-field
@@ -112,8 +120,8 @@
             </v-col>
          </v-form>
       </v-col>
-      <v-btn class="ma-4 pa-4 primary" style="font-size:20px;" @click="show_dialog()">
-         POST
+      <v-btn class="ma-4 pa-4 primary" style="font-size:20px;" @click="show_dialog()" v-show="show_add">
+         ADD
       </v-btn>
 
       <v-dialog v-model="dialog" persistent>
@@ -131,16 +139,23 @@
             <v-btn bottom x-large width="50%" class="error" @click="dialog = false">Cancel</v-btn>
          </v-card>
       </v-dialog>
+
+      <update-db></update-db>
    </v-row>
 </template>
 
 <script>
 import content_vuetify from "./content-vuetify.js";
+import update_db from "@/components/update-db.vue";
 
 export default {
    name: "adminDataComp",
+   components: {
+      "update-db": update_db
+   },
    data() {
       return {
+         show_add: false,
          topic_error: false,
          date_error: false,
          uniqueIdMatch_error: false,
