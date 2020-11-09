@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       notes: null,
-      fetch_url: 'https://adakapi.herokuapp.com',
+      fetch_url: 'http://localhost:5500',
+      // fetch_url: 'https://adakapi.herokuapp.com',
       main_view_type: 'block',
       render_index: null,
       auth_status: false

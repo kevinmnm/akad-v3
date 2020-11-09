@@ -1,5 +1,5 @@
 <template>
-   <v-row>
+   <v-row class="mb-12">
       <v-col
          cols="12"
          class="d-flex flex-row justify-space-between"
@@ -12,13 +12,48 @@
                placeholder="Content #"
                class="ma-0 pa-0"
                height="50px"
+               v-model="content_number"
                filled
                outlined
             ></v-text-field>
          </v-card>
          <v-card width="20%" flat>
-            <v-btn height="57px" outlined width="100%" @click="fetch_update()">Find</v-btn>
+            <v-btn height="57px" outlined width="100%" @click="fetch_update()"
+               >Find</v-btn
+            >
          </v-card>
+      </v-col>
+      <v-col
+         cols="12"
+         v-show="data_arrived"
+         style="border: 1px solid darkGrey;"
+         class="pa-0"
+      >
+         <v-sheet
+            color="success"
+            class="white--text ma-0 pa-2 d-flex flex-column"
+            outlined
+         >
+            <v-card>
+               <v-card-title class="pa-0">
+                  <v-btn
+                     height="100%"
+                     width="100%"
+                     class="ma-0 pa-3"
+                     @click="retrieved_json = !retrieved_json"
+                     >retrieved json</v-btn
+                  >
+               </v-card-title>
+            </v-card>
+            <v-card v-show="retrieved_json">
+               <v-card-subtitle>
+                  <pre style="white-space:pre-wrap; word-wrap:break-word;">
+                  {{ JSON.stringify(this.retrieved_data, null, 4) }}
+               </pre
+                  >
+               </v-card-subtitle>
+            </v-card>
+         </v-sheet>
       </v-col>
       <!-- <v-col
          cols="12"
@@ -29,7 +64,11 @@
             <v-text-field style="background: green;"></v-text-field>
          </v-card>
       </v-col> -->
-      <v-col cols="12" style="border: 1px solid darkGrey;" v-show="data_arrived">
+      <v-col
+         cols="12"
+         style="border: 1px solid darkGrey;"
+         v-show="data_arrived"
+      >
          <v-form autocomplete="off" class="d-flex flex-row flex-wrap">
             <v-col cols="12" class="pa-1">
                <v-text-field
@@ -117,6 +156,19 @@
             </v-col>
          </v-form>
       </v-col>
+      <v-col cols="12" v-show="data_arrived" class="pa-0 mt-1">
+         <v-btn
+            color="success"
+            outlined
+            x-large
+            width="100%"
+            height="100%"
+            class="ma-0 pa-5"
+            @click="fetch_update_db"
+            >update</v-btn
+         >
+      </v-col>
+      <v-spacer></v-spacer>
    </v-row>
 </template>
 
@@ -145,12 +197,48 @@ export default {
          referenceLink2_value: "",
          img_value: "",
          codepenEmbed_value: "",
-         data_arrived: false
+         data_arrived: false,
+         content_number: "",
+         content_uniquIdMatch: "",
+         retrieved_data: "",
+         retrieved_json: false
       };
    },
    methods: {
-      fetch_update() {
-         alert('not set yet');
+      async fetch_update() {
+         console.log(Number(this.content_number));
+         this.content_uniqueIdMatch = this.$store.state.notes[
+            Number(this.content_number) - 1
+         ].uniqueIdMatch;
+         console.log(this.content_uniqueIdMatch);
+         const found = await fetch(this.$store.state.fetch_url + "/update", {
+            headers: { "Content-Type": "application/json" },
+            method: "POST",
+            body: JSON.stringify({
+               contentNumber: this.content_number,
+               uniqueIdMatch: this.content_uniqueIdMatch
+            })
+         });
+
+         await found.json().then(data => {
+            this.retrieved_data = data;
+            console.log(data);
+            this.data_arrived = true;
+            this.topic_value = data.topic;
+            this.uniqueIdMatch_value = data.uniqueIdMatch;
+            this.date_value = data.date;
+            this.description_value = data.description;
+            this.referenceLink1_value = data.referenceLink1;
+            this.referenceLink2_value = data.referenceLink2;
+            this.img_value = data.img;
+            this.codepenEmbed_value = data.codepenEmbed;
+            if (data.content.toUpperCase() === "JS")
+               return (this.languages_value = "JAVASCRIPT");
+            return (this.languages_value = data.content.toUpperCase());
+         });
+      },
+      fetch_update_db() {
+         
       }
    }
 };

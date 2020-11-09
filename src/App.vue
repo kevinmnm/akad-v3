@@ -59,8 +59,6 @@
       </v-app-bar>
 
       <v-main>
-         <!-- <Main v-show="!admin" />
-         <Admin v-show="admin" /> -->
          <router-view></router-view>
       </v-main>
 
