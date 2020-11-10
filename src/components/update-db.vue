@@ -55,15 +55,22 @@
             </v-card>
          </v-sheet>
       </v-col>
-      <!-- <v-col
-         cols="12"
-         style="border: 1px solid darkGrey;"
-      >
-         <v-card class="d-flex flex-row">
-            <v-card-title style="background: red;">Topic</v-card-title>
-            <v-text-field style="background: green;"></v-text-field>
+      <v-col cols="12" class="d-flex justify-center">
+         <v-card v-show="data_arrived">
+            <v-btn
+               color="primary"
+               @click="enable_edits()"
+               v-show="data_arrived"
+               >Enable Edits</v-btn
+            >
+            <v-btn
+               color="error"
+               @click="disable_edits()"
+               v-show="!data_arrived"
+               >Disable Edits</v-btn
+            >
          </v-card>
-      </v-col> -->
+      </v-col>
       <v-col
          cols="12"
          style="border: 1px solid darkGrey;"
@@ -78,6 +85,10 @@
                   filled
                   outlined
                   required
+                  :disabled="disabler[0].topic"
+                  :append-icon="
+                     disabler[0].topic ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
                ></v-text-field>
             </v-col>
             <v-col cols="12" class="col-sm-4 pa-1">
@@ -85,10 +96,13 @@
                   label="Date"
                   type="text"
                   v-model="date_value"
-                  :error="date_error"
                   filled
                   outlined
                   required
+                  :disabled="disabler[0].date"
+                  :append-icon="
+                     disabler[0].date ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
                ></v-text-field>
             </v-col>
             <v-col cols="12" class="col-sm-4 pa-1">
@@ -96,10 +110,13 @@
                   label="Unique ID"
                   type="text"
                   v-model="uniqueIdMatch_value"
-                  :error="uniqueIdMatch_error"
                   filled
                   outlined
                   required
+                  :disabled="disabler[0].uniqueIdMatch"
+                  :append-icon="
+                     disabler[0].uniqueIdMatch ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
                ></v-text-field>
             </v-col>
             <v-col cols="12" class="col-sm-4 pa-1">
@@ -107,20 +124,26 @@
                   label="Language"
                   :items="languages"
                   v-model="languages_value"
-                  :error="languages_error"
                   filled
                   outlined
                   required
+                  :disabled="disabler[0].languages"
+                  :append-icon="
+                     disabler[0].languages ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
                ></v-select>
             </v-col>
             <v-col cols="12" class="pa-1">
                <v-textarea
                   label="Description"
                   v-model="description_value"
-                  :error="description_error"
                   filled
                   outlined
                   no-resize
+                  :disabled="disabler[0].description"
+                  :append-icon="
+                     disabler[0].description ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
                ></v-textarea>
             </v-col>
             <v-col cols="12" class="pa-1">
@@ -129,12 +152,24 @@
                   v-model="referenceLink1_value"
                   filled
                   outlined
+                  :disabled="disabler[0].referenceLink1"
+                  :append-icon="
+                     disabler[0].referenceLink1
+                        ? 'mdi-pencil-off'
+                        : 'mdi-pencil'
+                  "
                ></v-text-field>
                <v-text-field
                   label="Reference Link #2"
                   v-model="referenceLink2_value"
                   filled
                   outlined
+                  :disabled="disabler[0].referenceLink2"
+                  :append-icon="
+                     disabler[0].referenceLink2
+                        ? 'mdi-pencil-off'
+                        : 'mdi-pencil'
+                  "
                ></v-text-field>
             </v-col>
             <v-col cols="12" class="pa-1">
@@ -143,6 +178,10 @@
                   v-model="img_value"
                   filled
                   outlined
+                  :append-icon="
+                     disabler[0].img ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
+                  :disabled="disabler[0].img"
                ></v-text-field>
             </v-col>
             <v-col cols="12" class="pa-1">
@@ -152,6 +191,11 @@
                   filled
                   outlined
                   no-resize
+                  auto-grow
+                  :append-icon="
+                     disabler[0].codepenEmbed ? 'mdi-pencil-off' : 'mdi-pencil'
+                  "
+                  :disabled="disabler[0].codepenEmbed"
                ></v-textarea>
             </v-col>
          </v-form>
@@ -164,7 +208,7 @@
             width="100%"
             height="100%"
             class="ma-0 pa-5"
-            @click="fetch_update_db"
+            @click="fetch_update_db()"
             >update</v-btn
          >
       </v-col>
@@ -189,6 +233,20 @@ export default {
             "FIREBASE",
             "OTHER"
          ],
+         disabler: [
+            {
+               topic: true,
+               languages: true,
+               date: true,
+               uniqueIdMatch: true,
+               description: true,
+               referenceLink1: true,
+               referenceLink2: true,
+               img: true,
+               codepenEmbed: true
+            }
+         ],
+         topic_value: "",
          languages_value: "",
          date_value: "",
          uniqueIdMatch_value: "",
@@ -201,20 +259,38 @@ export default {
          content_number: "",
          content_uniquIdMatch: "",
          retrieved_data: "",
-         retrieved_json: false
+         retrieved_json: false,
+         show_enable_button: true
       };
    },
    methods: {
+      enable_edits() {
+         Object.keys(this.disabler[0]).forEach(item => {
+            this.disabler[0][item] = false;
+            return console.log(this.disabler);
+         });
+         this.show_enable_button = false;
+      },
+      disable_edits() {
+         Object.keys(this.disabler[0]).forEach(item => {
+            this.disabler[0][item] = true;
+            return console.log(this.disabler);
+         });
+         this.show_enable_button = true;
+      },
       async fetch_update() {
-         console.log(Number(this.content_number));
          this.content_uniqueIdMatch = this.$store.state.notes[
             Number(this.content_number) - 1
          ].uniqueIdMatch;
          console.log(this.content_uniqueIdMatch);
          const found = await fetch(this.$store.state.fetch_url + "/update", {
-            headers: { "Content-Type": "application/json" },
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: "Bearer " + localStorage.token
+            },
             method: "POST",
             body: JSON.stringify({
+               action: "PRE-UPDATE",
                contentNumber: this.content_number,
                uniqueIdMatch: this.content_uniqueIdMatch
             })
@@ -237,8 +313,36 @@ export default {
             return (this.languages_value = data.content.toUpperCase());
          });
       },
-      fetch_update_db() {
-         
+      async fetch_update_db() {
+         const respon = await fetch(this.$store.state.fetch_url + "/update", {
+            headers: {
+               Authorization: "bearer " + localStorage.token,
+               "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+               action: "UPDATE_DB",
+               topic: this.topic_value,
+               uniqueIdMatch: this.uniqueIdMatch_value,
+               date: this.date_value,
+               content: this.languages_value,
+               description: this.description_value,
+               referenceLink1: this.referenceLink1_value,
+               referenceLink2: this.referenceLink2_value,
+               img: this.img_value,
+               codepenEmbed: this.codepenEmbed_value
+            })
+         });
+
+         respon.json().then(data => {
+            console.log(data.msg);
+            if (data.updated) {
+               this.$store.dispatch("fetchNotes");
+               this.$router.push("/");
+            } else {
+               alert(data.msg);
+            }
+         });
       }
    }
 };
