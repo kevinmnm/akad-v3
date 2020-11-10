@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       notes: null,
-      fetch_url: 'http://localhost:5500',
-      // fetch_url: 'https://adakapi.herokuapp.com',
+      // fetch_url: 'http://localhost:5500',
+      fetch_url: 'https://adakapi.herokuapp.com',
       main_view_type: 'block',
       render_index: null,
       auth_status: false
@@ -52,7 +52,7 @@ export default new Vuex.Store({
             })
             .then(data => { 
                commit('FETCH_AUTH', data);
-               data ? console.log('Authenticated') : console.log('Not Authenticated');
+               data ? console.warn('User Authenticated') : console.warn('User Not Authenticated');
             });
       }
    },

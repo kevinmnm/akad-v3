@@ -47,10 +47,9 @@
             </v-card>
             <v-card v-show="retrieved_json">
                <v-card-subtitle>
-                  <pre style="white-space:pre-wrap; word-wrap:break-word;">
-                  {{ JSON.stringify(this.retrieved_data, null, 4) }}
-               </pre
-                  >
+                  <pre style="white-space:pre-wrap; word-wrap:break-word;">{{
+                     JSON.stringify(this.retrieved_data, null, 4)
+                  }}</pre>
                </v-card-subtitle>
             </v-card>
          </v-sheet>
@@ -60,13 +59,13 @@
             <v-btn
                color="primary"
                @click="enable_edits()"
-               v-show="data_arrived"
+               v-show="show_enable_button"
                >Enable Edits</v-btn
             >
             <v-btn
                color="error"
                @click="disable_edits()"
-               v-show="!data_arrived"
+               v-show="!show_enable_button"
                >Disable Edits</v-btn
             >
          </v-card>
@@ -208,10 +207,41 @@
             width="100%"
             height="100%"
             class="ma-0 pa-5"
-            @click="fetch_update_db()"
+            @click="confirm_dialog = true"
             >update</v-btn
          >
       </v-col>
+      <v-dialog v-model="confirm_dialog" persistent>
+         <v-card class="d-flex flex-column align-center">
+            <v-card-title>New Data</v-card-title>
+            <pre
+               class="text-left pa-2 mb-3"
+               style="width:80%; background:black; border-radius:5px; white-space:pre-wrap; word-wrap:break-word;"
+               >{{
+                  JSON.stringify(
+                     {
+                        action: "UPDATE_DB",
+                        topic: this.topic_value,
+                        uniqueIdMatch: this.uniqueIdMatch_value,
+                        date: this.date_value,
+                        content: this.languages_value,
+                        description: this.description_value,
+                        referenceLink1: this.referenceLink1_value,
+                        referenceLink2: this.referenceLink2_value,
+                        img: this.img_value,
+                        codepenEmbed: this.codepenEmbed_value
+                     },
+                     null,
+                     4
+                  )
+               }}</pre
+            >
+            <v-sheet width="80%" class="pa-1 mb-2 d-flex flex-column flex-sm-row justify-space-between">
+               <v-btn class="flex-grow-1 ma-1" color="primary" @click="fetch_update_db()">confirm</v-btn>
+               <v-btn class="flex-grow-1 ma-1" color="error" @click="confirm_dialog = false">cancel</v-btn>
+            </v-sheet>
+         </v-card>
+      </v-dialog>
       <v-spacer></v-spacer>
    </v-row>
 </template>
@@ -260,21 +290,20 @@ export default {
          content_uniquIdMatch: "",
          retrieved_data: "",
          retrieved_json: false,
-         show_enable_button: true
+         show_enable_button: true,
+         confirm_dialog: false
       };
    },
    methods: {
       enable_edits() {
          Object.keys(this.disabler[0]).forEach(item => {
             this.disabler[0][item] = false;
-            return console.log(this.disabler);
          });
          this.show_enable_button = false;
       },
       disable_edits() {
          Object.keys(this.disabler[0]).forEach(item => {
             this.disabler[0][item] = true;
-            return console.log(this.disabler);
          });
          this.show_enable_button = true;
       },
@@ -282,7 +311,6 @@ export default {
          this.content_uniqueIdMatch = this.$store.state.notes[
             Number(this.content_number) - 1
          ].uniqueIdMatch;
-         console.log(this.content_uniqueIdMatch);
          const found = await fetch(this.$store.state.fetch_url + "/update", {
             headers: {
                "Content-Type": "application/json",
@@ -298,7 +326,6 @@ export default {
 
          await found.json().then(data => {
             this.retrieved_data = data;
-            console.log(data);
             this.data_arrived = true;
             this.topic_value = data.topic;
             this.uniqueIdMatch_value = data.uniqueIdMatch;

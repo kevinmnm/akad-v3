@@ -9,16 +9,38 @@
       </v-col>
       <v-col cols="12" class="d-flex justify-center pa-5">
          <!-- <v-card class="ma-0 font-weight-bold" flat>ADD NOTE</v-card> -->
-         <v-btn class="ma-1" width="100px" @click="show_which = 'add'">Add</v-btn>
-         <v-btn class="ma-1" width="100px" @click="show_which = 'update'">Update</v-btn>
-         <v-btn class="ma-1" width="100px" @click="show_which = 'delete'">Delete</v-btn>
+         <v-btn
+            class="ma-1"
+            width="100px"
+            :color="show_which === 'add' ? 'primary' : null"
+            @click="show_which = 'add'"
+            >Add</v-btn
+         >
+         <v-btn
+            class="ma-1"
+            width="100px"
+            :color="show_which === 'update' ? 'warning' : null"
+            @click="show_which = 'update'"
+            >Update</v-btn
+         >
+         <v-btn
+            class="ma-1"
+            width="100px"
+            :color="show_which === 'delete' ? 'error' : null"
+            @click="show_which = 'delete'"
+            >Delete</v-btn
+         >
       </v-col>
 
       <!-- ADD CONTENT COMPONENT STARTS HERE -->
       <!-- ADD CONTENT COMPONENT STARTS HERE -->
       <!-- ADD CONTENT COMPONENT STARTS HERE -->
 
-      <v-col cols="12" style="border: 1px solid darkGrey;" v-if="show_which === 'add'">
+      <v-col
+         cols="12"
+         style="border: 1px solid darkGrey;"
+         v-if="show_which === 'add'"
+      >
          <v-form autocomplete="off" class="d-flex flex-row flex-wrap">
             <v-col cols="12" class="pa-1">
                <v-text-field
@@ -121,7 +143,12 @@
             </v-col>
          </v-form>
       </v-col>
-      <v-btn class="ma-4 pa-4 primary" style="font-size:20px;" @click="show_dialog()" v-show="show_which === 'add'">
+      <v-btn
+         class="ma-4 pa-4 primary"
+         style="font-size:20px;"
+         @click="show_dialog()"
+         v-show="show_which === 'add'"
+      >
          ADD
       </v-btn>
 
@@ -133,26 +160,46 @@
          >
             <v-card-title>Submitting following data</v-card-title>
             <v-card-text class="black--text" style="word-wrap:break-word;">
-               <pre class="yellow lighten-5 text-left" style="font-size:14px; word-wrap:break-word; white-space:pre-wrap;">{{ final_data }}</pre>
+               <pre
+                  class="yellow lighten-5 text-left"
+                  style="font-size:14px; word-wrap:break-word; white-space:pre-wrap;"
+                  >{{ final_data }}</pre
+               >
             </v-card-text>
-            <v-btn bottom x-large width="50%" class="success mb-3" @click="posting()">Confirm</v-btn> 
+            <v-btn
+               bottom
+               x-large
+               width="50%"
+               class="success mb-3"
+               @click="posting()"
+               >Confirm</v-btn
+            >
             <v-divider></v-divider>
-            <v-btn bottom x-large width="50%" class="error" @click="dialog = false">Cancel</v-btn>
+            <v-btn
+               bottom
+               x-large
+               width="50%"
+               class="error"
+               @click="dialog = false"
+               >Cancel</v-btn
+            >
          </v-card>
       </v-dialog>
-
       <update-db v-show="show_which === 'update'"></update-db>
+      <delete-db v-show="show_which === 'delete'"></delete-db>
    </v-row>
 </template>
 
 <script>
 import content_vuetify from "./content-vuetify.js";
 import update_db from "@/components/update-db.vue";
+import delete_db from "@/components/delete-db.vue";
 
 export default {
    name: "adminDataComp",
    components: {
-      "update-db": update_db
+      "update-db": update_db,
+      "delete-db": delete_db
    },
    data() {
       return {
@@ -176,35 +223,38 @@ export default {
          referenceLink2: "",
          img: "",
          codepenEmbed: "",
-         final_data: "",
+         final_data: ""
       };
    },
    methods: {
-      async posting(){
-         let resp = await fetch(this.$store.state.fetch_url + '/add', {
-            headers: { 
-               'Content-Type': 'application/json',
-               Authorization: 'Bearer ' + localStorage.token 
+      async posting() {
+         let resp = await fetch(this.$store.state.fetch_url + "/add", {
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: "Bearer " + localStorage.token
             },
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify(this.final_data)
          });
 
-         resp.json().then( res => {
-            if (res) {
-               this.$store.dispatch('fetchNotes');
-               this.$router.push('/');
-            } else {
-               alert('Please log in first.');
-               this.$store.dispatch('fetchAuth');
-            }
-         }).catch( err => console.log(err) );
+         resp
+            .json()
+            .then(res => {
+               if (res) {
+                  this.$store.dispatch("fetchNotes");
+                  this.$router.push("/");
+               } else {
+                  alert("Please log in first.");
+                  this.$store.dispatch("fetchAuth");
+               }
+            })
+            .catch(err => console.log(err));
       },
-      show_dialog(){
+      show_dialog() {
          this.final_data = new Object();
          this.final_data.topic = this.topic;
          this.final_data.uniqueIdMatch = this.uniqueIdMatch;
-         this.final_data.date =  this.date;
+         this.final_data.date = this.date;
          this.final_data.content = this.content;
          this.final_data.mdi = this.mdi;
          this.final_data.name = this.name;
@@ -222,30 +272,85 @@ export default {
          this.description_error = false;
          this.content_setter_error = false;
 
-         if (!this.topic) {this.topic_error = true; this.dialog = false;}
-         if (!this.date) {this.date_error = true; this.dialog = false;}
-         if (!this.uniqueIdMatch) {this.uniqueIdMatch_error = true; this.dialog = false;}
-         if (!this.description) {this.description_error = true; this.dialog = false;}
-         if (!this.content_setter) {this.content_setter_error = true; this.dialog = false;}
+         if (!this.topic) {
+            this.topic_error = true;
+            this.dialog = false;
+         }
+         if (!this.date) {
+            this.date_error = true;
+            this.dialog = false;
+         }
+         if (!this.uniqueIdMatch) {
+            this.uniqueIdMatch_error = true;
+            this.dialog = false;
+         }
+         if (!this.description) {
+            this.description_error = true;
+            this.dialog = false;
+         }
+         if (!this.content_setter) {
+            this.content_setter_error = true;
+            this.dialog = false;
+         }
       },
-      logout(){
-         localStorage.token = 'cloaked';
-         this.$store.dispatch('fetchAuth');
+      logout() {
+         localStorage.token = "cloaked";
+         this.$store.dispatch("fetchAuth");
       }
    },
    watch: {
       content_setter(val) {
-         if (val === 'CSS') {this.content = 'CSS'; this.name = 'CSS'; this.mdi = 'mdi-language-css3';}
-         if (val === 'JAVASCRIPT') {this.content = 'JS'; this.name = 'JavaScript'; this.mdi = 'mdi-language-javascript'; }
-         if (val === 'VUE') {this.content = 'Vue'; this.name = 'Vue'; this.mdi = 'mdi-vuejs'; }
-         if (val === 'REACT') {this.content = 'React'; this.name = 'React'; this.mdi = 'mdi-react'; }
-         if (val === 'NODE') {this.content = 'Node'; this.name = 'Node'; this.mdi = 'mdi-nodejs'; }
-         if (val === 'EXPRESS') {this.content = 'Express'; this.name = 'Express'; this.mdi = 'mdi-nodejs'; }
-         if (val === 'MONGODB') {this.content = 'Mongo'; this.name = 'MongoDB'; this.mdi = 'mdi-leaf'; }
-         if (val === 'MYSQL') {this.content = 'Mysql'; this.name = 'MySQL'; this.mdi = 'mdi-database-search'; }
-         if (val === 'FIREBASE') {this.content = 'Firebase'; this.name = 'Firebase'; this.mdi = 'mdi-firebase'; }
-         if (val === 'OTHER') {this.content = 'Other'; this.name = 'Other'; this.mdi = 'mdi-unfold-more-vertical'; }
-      },
+         if (val === "CSS") {
+            this.content = "CSS";
+            this.name = "CSS";
+            this.mdi = "mdi-language-css3";
+         }
+         if (val === "JAVASCRIPT") {
+            this.content = "JS";
+            this.name = "JavaScript";
+            this.mdi = "mdi-language-javascript";
+         }
+         if (val === "VUE") {
+            this.content = "Vue";
+            this.name = "Vue";
+            this.mdi = "mdi-vuejs";
+         }
+         if (val === "REACT") {
+            this.content = "React";
+            this.name = "React";
+            this.mdi = "mdi-react";
+         }
+         if (val === "NODE") {
+            this.content = "Node";
+            this.name = "Node";
+            this.mdi = "mdi-nodejs";
+         }
+         if (val === "EXPRESS") {
+            this.content = "Express";
+            this.name = "Express";
+            this.mdi = "mdi-nodejs";
+         }
+         if (val === "MONGODB") {
+            this.content = "Mongo";
+            this.name = "MongoDB";
+            this.mdi = "mdi-leaf";
+         }
+         if (val === "MYSQL") {
+            this.content = "Mysql";
+            this.name = "MySQL";
+            this.mdi = "mdi-database-search";
+         }
+         if (val === "FIREBASE") {
+            this.content = "Firebase";
+            this.name = "Firebase";
+            this.mdi = "mdi-firebase";
+         }
+         if (val === "OTHER") {
+            this.content = "Other";
+            this.name = "Other";
+            this.mdi = "mdi-unfold-more-vertical";
+         }
+      }
    },
    mounted() {
       for (let all of content_vuetify) {

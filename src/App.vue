@@ -6,7 +6,8 @@
             height="100%"
             :width="nav_width"
             class="font-weight-bold pa-0 ma-1"
-            :to="{name: 'Main'}"
+            :to="{ name: 'Main' }"
+            :color="(!admin && main_view_type === 'block') ? 'info' : null"
             text
             dense
             tile
@@ -16,22 +17,26 @@
          </v-btn>
          <v-btn
             @click="$store.commit('change_view_type', 'list'), reset()"
+            :color="(!admin && main_view_type === 'list') ? 'info' : null"
             height="100%"
             :width="nav_width"
             class="font-weight-bold ma-1"
-            :to="{name: 'Main'}"
+            :to="{ name: 'Main' }"
             text
             tile
          >
             <span class="hidden-xs-only">list</span>
-            <v-icon class="hidden-sm-and-up">mdi-format-list-bulleted-square</v-icon>
+            <v-icon class="hidden-sm-and-up"
+               >mdi-format-list-bulleted-square</v-icon
+            >
          </v-btn>
          <v-btn
             @click="$store.commit('change_view_type', 'calendar'), reset()"
+            :color="(!admin && main_view_type === 'calendar') ? 'info' : null"
             height="100%"
             :width="nav_width"
             class="font-weight-bold ma-1"
-            :to="{name: 'Main'}"
+            :to="{ name: 'Main' }"
             text
             tile
          >
@@ -49,7 +54,7 @@
                   height="100%"
                   v-on="on"
                   @click="admin = true"
-                  :to="{name: 'Admin'}"
+                  :to="{ name: 'Admin' }"
                >
                   <v-icon height="100%">mdi-shield-account-outline</v-icon>
                </v-btn>
@@ -61,23 +66,15 @@
       <v-main>
          <router-view></router-view>
       </v-main>
-
    </v-app>
 </template>
 
 <script>
-// import Main from "./views/Main.vue";
-// import Admin from "./views/Admin.vue";
-
 export default {
    name: "App",
-   components: {
-      // Main,
-      // Admin
-   },
    data() {
       return {
-         admin: false
+         admin: false,
       };
    },
    computed: {
@@ -85,7 +82,12 @@ export default {
          return this.$store.state.notes;
       },
       nav_width() {
-         return this.$vuetify.breakpoint.name === 'xs' ? '50px' : '100px';
+         return this.$vuetify.breakpoint.name === "xs" ? "50px" : "100px";
+      },
+      main_view_type: {
+         get() {
+            return this.$store.state.main_view_type;
+         }
       }
    },
    methods: {
@@ -96,7 +98,7 @@ export default {
    },
    mounted() {
       if (!localStorage.token) {
-         localStorage.token = 'cloaked';
+         localStorage.token = "cloaked";
       }
       this.$store.dispatch("fetchNotes");
 
@@ -130,5 +132,4 @@ u {
 a {
    text-decoration: none;
 }
-
 </style>
