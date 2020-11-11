@@ -1,16 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import openSocket from 'socket.io-client';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
    state: {
       notes: null,
-      // fetch_url: 'http://localhost:5500',
-      fetch_url: 'https://adakapi.herokuapp.com',
+      fetch_url: process.env.PORT || 'http://localhost:5500',
+      // fetch_url: 'https://adakapi.herokuapp.com',
       main_view_type: 'block',
       render_index: null,
-      auth_status: false
+      auth_status: false,
+      socket_connection: null
    },
    mutations: {
       FETCH_NOTES(state, payload) {
@@ -30,6 +32,10 @@ export default new Vuex.Store({
       },
       FETCH_AUTH(state, payload) {
          state.auth_status = payload;
+      },
+      CONNECT_SOCKET(state) {
+         state.socket_connection = openSocket(state.fetch_url);
+         console.log(state.socket_connection);
       }
    },
    actions: {
@@ -43,7 +49,6 @@ export default new Vuex.Store({
             .catch(err => console.log(err));
       },
       fetchAuth({ commit }) {
-         // console.log(localStorage.token);
          fetch(this.state.fetch_url + '/auth', {
             headers: { Authorization: 'Bearer ' + localStorage.token }
          })
@@ -54,6 +59,9 @@ export default new Vuex.Store({
                commit('FETCH_AUTH', data);
                data ? console.warn('User Authenticated') : console.warn('User Not Authenticated');
             });
+      },
+      connectSocket(context) {
+         context.commit('CONNECT_SOCKET');
       }
    },
    modules: {}

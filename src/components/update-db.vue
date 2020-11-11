@@ -343,7 +343,7 @@ export default {
       async fetch_update_db() {
          const respon = await fetch(this.$store.state.fetch_url + "/update", {
             headers: {
-               Authorization: "bearer " + localStorage.token,
+               Authorization: "Bearer " + localStorage.token,
                "Content-Type": "application/json"
             },
             method: "POST",

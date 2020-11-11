@@ -70,6 +70,7 @@
 </template>
 
 <script>
+
 export default {
    name: "App",
    data() {
@@ -105,6 +106,8 @@ export default {
       if (localStorage.theme !== undefined) {
          this.$vuetify.theme.dark = localStorage.theme;
       }
+
+      this.$store.dispatch('connectSocket');
    }
 };
 </script>
