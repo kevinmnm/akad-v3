@@ -107,7 +107,10 @@ export default {
          this.$vuetify.theme.dark = localStorage.theme;
       }
 
-      this.$store.dispatch('connectSocket');
+      // this.$store.dispatch('connectSocket');
+   },
+   beforeCreate() {
+      this.$store.commit('DETECT_ENV');
    }
 };
 </script>

@@ -1,18 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import openSocket from 'socket.io-client';
-
+// import openSocket from 'socket.io-client';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
    state: {
       notes: null,
-      fetch_url: process.env.PORT || 'http://localhost:5500',
+      // fetch_url: 'http://localhost:5500',
       // fetch_url: 'https://adakapi.herokuapp.com',
+      fetch_url: '',
       main_view_type: 'block',
       render_index: null,
       auth_status: false,
-      socket_connection: null
+      // socket_connection: null
    },
    mutations: {
       FETCH_NOTES(state, payload) {
@@ -33,10 +33,19 @@ export default new Vuex.Store({
       FETCH_AUTH(state, payload) {
          state.auth_status = payload;
       },
-      CONNECT_SOCKET(state) {
-         state.socket_connection = openSocket(state.fetch_url);
-         console.log(state.socket_connection);
+      DETECT_ENV(state) {
+         if (process.env.NODE_ENV === 'development') {
+            state.fetch_url = 'http://localhost:5500';
+            console.log('Development Environment');
+         } else {
+            state.fetch_url = 'https://adakapi.herokuapp.com';
+            console.log('Production Environment');
+         }
       }
+      // CONNECT_SOCKET(state) {
+      //    state.socket_connection = openSocket(state.fetch_url);
+      //    console.log(state.socket_connection);
+      // }
    },
    actions: {
       fetchNotes({ commit }) {
@@ -60,9 +69,9 @@ export default new Vuex.Store({
                data ? console.warn('User Authenticated') : console.warn('User Not Authenticated');
             });
       },
-      connectSocket(context) {
-         context.commit('CONNECT_SOCKET');
-      }
+      // connectSocket(context) {
+      //    context.commit('CONNECT_SOCKET');
+      // }
    },
    modules: {}
 });
