@@ -7,7 +7,7 @@
             :width="nav_width"
             class="font-weight-bold pa-0 ma-1"
             :to="{ name: 'Main' }"
-            :color="(!admin && main_view_type === 'block') ? 'info' : null"
+            :color="!admin && main_view_type === 'block' ? 'info' : null"
             text
             dense
             tile
@@ -17,7 +17,7 @@
          </v-btn>
          <v-btn
             @click="$store.commit('change_view_type', 'list'), reset()"
-            :color="(!admin && main_view_type === 'list') ? 'info' : null"
+            :color="!admin && main_view_type === 'list' ? 'info' : null"
             height="100%"
             :width="nav_width"
             class="font-weight-bold ma-1"
@@ -32,7 +32,7 @@
          </v-btn>
          <v-btn
             @click="$store.commit('change_view_type', 'calendar'), reset()"
-            :color="(!admin && main_view_type === 'calendar') ? 'info' : null"
+            :color="!admin && main_view_type === 'calendar' ? 'info' : null"
             height="100%"
             :width="nav_width"
             class="font-weight-bold ma-1"
@@ -70,12 +70,11 @@
 </template>
 
 <script>
-
 export default {
    name: "App",
    data() {
       return {
-         admin: false,
+         admin: false
       };
    },
    computed: {
@@ -98,6 +97,12 @@ export default {
       }
    },
    mounted() {
+      if (process.env.NODE_ENV === 'production' && location.protocol !== "https:") {
+         location.replace(
+            `https:${location.href.substring(location.protocol.length)}`
+         );
+      }
+
       if (!localStorage.token) {
          localStorage.token = "cloaked";
       }
@@ -110,7 +115,7 @@ export default {
       // this.$store.dispatch('connectSocket');
    },
    beforeCreate() {
-      this.$store.commit('DETECT_ENV');
+      this.$store.commit("DETECT_ENV");
    }
 };
 </script>
